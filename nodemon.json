@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "ignore": ["node_modules", ".next", "*.test.js"],
+  "watch": ["server.js"],
+  "ext": "js json",
+  "execMap": {
+    "js": "babel-node --presets env,es2017,stage-3"
+  }
+}

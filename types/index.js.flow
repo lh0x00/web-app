@@ -1,0 +1,4 @@
+/* @flow */
+/* eslint-disable no-unused-vars */
+
+type TMyDocument = { renderPage: Function }
