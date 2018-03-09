@@ -15,3 +15,43 @@ a standard source code for starting a server-side render website using Express +
 - ### esLint (airbnb)
 
 - ### ...
+
+# usage
+
+## clone source
+
+```bash
+# clone source
+$ git clone https://github.com/lamhieu-vk/web-front-starter.git
+# move to dir
+$ cd web-front-starter
+```
+
+## install packages
+
+```bash
+# use npm
+$ npm install
+# or yarn
+$ yarn
+```
+
+## scripts
+
+### run development mode
+
+```bash
+# use npm
+$ npm run dev
+# or yarn
+$ yarn dev
+```
+
+### run production mode
+
+```
+# use npm
+$ npm run serve
+# or yarn
+$ yarn serve
+```
