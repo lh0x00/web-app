@@ -1,6 +1,8 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import next from 'next'
+import config from 'config'
+import connectDatabase from 'server/connectDatabase'
 import applyMiddleware from 'server/applyMiddleware'
 import handleSecure from 'server/handleSecure'
 import initSession from 'server/initSession'
@@ -10,12 +12,14 @@ import isProd from 'utils/isProduction'
 
 dotenv.config()
 
-const port = parseInt(process.env.PORT, 10) || 3000
+const port = parseInt(process.env.PORT, 10) || config.server.port
 
 const app = next({ dev: !isProd })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
+  connectDatabase()
+
   const server = express()
 
   applyMiddleware({ server })

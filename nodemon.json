@@ -8,6 +8,8 @@
   "watch": [
     "app.js",
     "server/*.js",
+    "collections/*.js",
+    "api/routes/*.js",
     "pages/_docmuent.js"
   ],
   "ext": "js json",

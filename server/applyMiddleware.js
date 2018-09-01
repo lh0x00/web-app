@@ -7,7 +7,10 @@ type TApplyMiddleWare = {
 }
 
 function applyMiddleware({ server }: TApplyMiddleWare): any {
-  server.use(bodyParser.json())
+  server.use([
+    bodyParser.json(),
+    bodyParser.urlencoded({ extended: true }),
+  ])
 
   if (isProd) {
     server.use(compression())
