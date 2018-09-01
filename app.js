@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import next from 'next'
 import applyMiddleware from 'server/applyMiddleware'
+import handleSecure from 'server/handleSecure'
 import initSession from 'server/initSession'
 import registerApi from 'server/registerApi'
 import bindRoutes from 'server/bindRoutes'
@@ -19,6 +20,8 @@ app.prepare().then(() => {
 
   applyMiddleware({ server })
 
+  handleSecure({ server })
+
   initSession({ server })
 
   registerApi({ server })
@@ -30,6 +33,6 @@ app.prepare().then(() => {
   server.listen(port, (err) => {
     if (err) throw err
     /* eslint-disable-next-line no-console */
-    console.log(`> ready on http://localhost:${port}`)
+    console.log(`> http://localhost:${port}`)
   })
 })
