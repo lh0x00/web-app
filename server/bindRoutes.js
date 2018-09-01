@@ -1,3 +1,4 @@
+import { Router } from 'express'
 import renderPage from 'server/renderPage'
 
 const METHOD_ALLOW = ['get', 'post']
@@ -20,11 +21,13 @@ type TBindRoutes = {
 }
 
 function bindRoutes({ server, app }: TBindRoutes): any {
+  const router = Router()
+
   const pathAndConfigRoutes = Object.entries(allRoutes)
-  pathAndConfigRoutes.forEach(([path, config]) => {
+  pathAndConfigRoutes.forEach(([path: string, config: object]) => {
     const { methods, handler } = config
 
-    const onRoute = (request, response, next) => handler({
+    const onRoute = (request: any, response: any, next: any): any => handler({
       app, request, response, next,
     })
 
@@ -33,8 +36,10 @@ function bindRoutes({ server, app }: TBindRoutes): any {
 
     listMethods
       .filter(m => METHOD_ALLOW.includes(m))
-      .forEach(m => server[m](path, onRoute))
+      .forEach(m => router[m](path, onRoute))
   })
+
+  server.use(router)
 
   return server
 }
