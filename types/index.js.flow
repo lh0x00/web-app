@@ -4,3 +4,7 @@
 type TMyDocument = { renderPage: Function }
 
 type object = { [key: string]: any }
+
+type TProps = object
+
+type TState = object

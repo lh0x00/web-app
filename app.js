@@ -5,13 +5,13 @@ import applyMiddleware from 'server/applyMiddleware'
 import initSession from 'server/initSession'
 import registerApi from 'server/registerApi'
 import bindRoutes from 'server/bindRoutes'
+import isProd from 'utils/isProduction'
 
 // init config
 dotenv.config()
 
 // host infomation
 const port = parseInt(process.env.PORT, 10) || 3000
-const isProd = process.env.MODE === 'production'
 
 // init app
 const app = next({ dev: !isProd })

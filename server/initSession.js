@@ -11,7 +11,9 @@ function initSession({ server }: TInitSession): any {
     resave: false,
     unset: 'destroy',
     saveUninitialized: false,
-    cookie: { maxAge: 60 * 1000 },
+    cookie: {
+      maxAge: 60 * 1000,
+    },
   }))
   return server
 }

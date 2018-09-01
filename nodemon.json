@@ -1,7 +1,15 @@
 {
   "verbose": true,
-  "ignore": ["node_modules", ".next", "*.test.js"],
-  "watch": ["app.js", "server/*.js"],
+  "ignore": [
+    "node_modules",
+    ".next",
+    "*.test.js"
+  ],
+  "watch": [
+    "app.js",
+    "server/*.js",
+    "pages/_docmuent.js"
+  ],
   "ext": "js json",
   "execMap": {
     "js": "babel-node",
