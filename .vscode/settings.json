@@ -14,6 +14,6 @@
     "coverage/": true,
     "docs": false,
     "node_modules/": false,
-    "packages/*/lib": true,
-    "packag
+    "packages/*/lib": true
+  }
 }

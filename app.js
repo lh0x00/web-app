@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import next from 'next'
-import { parse } from 'url'
 import applyMiddleware from 'server/applyMiddleware'
 import initSession from 'server/initSession'
 import registerApi from 'server/registerApi'
@@ -13,8 +12,6 @@ dotenv.config()
 // host infomation
 const port = parseInt(process.env.PORT, 10) || 3000
 const isProd = process.env.MODE === 'production'
-
-console.log({ isProd, env: process.env })
 
 // init app
 const app = next({ dev: !isProd })
@@ -29,22 +26,14 @@ app.prepare().then(() => {
 
   registerApi({ server })
 
-  // bindRoutes({ server, app })
+  // server.use((req, res, next) => {
+  //   console.log('%s %s %s', req.method, req.url, req.path)
+  //   next()
+  // })
 
-  // server.get('*', (req, res) => handler(req, res))
-  const routes = {
-    '/': { page: '/Home' },
-  }
-  server.get('*', (req, res) => {
-    const parsedUrl = parse(req.url, true)
-    const { pathname, query = {} } = parsedUrl
-    const route = routes[pathname]
-    console.log({ route, pathname })
-    if (route) {
-      return app.render(req, res, route.page, query)
-    }
-    return handle(req, res)
-  })
+  bindRoutes({ server, app })
+
+  server.get('*', (req, res) => handle(req, res))
 
   server.listen(port, (err) => {
     if (err) throw err
