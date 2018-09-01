@@ -1,8 +1,11 @@
 import renderPage from 'server/renderPage'
 
+const METHOD_ALLOW = ['get', 'post']
+const METHOD_DEFAULT = ['get']
+
 const allRoutes = {
   '/': {
-    methods: ['POST', 'GET'],
+    methods: ['post', 'get'],
     handler: ({
       app, request, response, next,
     }) => renderPage({
@@ -10,11 +13,6 @@ const allRoutes = {
     }),
   },
 }
-
-const validateMethod = (
-  request: string,
-  allows: string[],
-): boolean => allows.includes(request)
 
 type TBindRoutes = {
   server: any,
@@ -26,33 +24,16 @@ function bindRoutes({ server, app }: TBindRoutes): any {
   pathAndConfigRoutes.forEach(([path, config]) => {
     const { methods, handler } = config
 
-    // handle when methods empty or not set
-    if (!Array.isArray(methods) || methods.length === 0) {
-      // open listen this `path` on `GET` method
-      server.get(path, (request, response, next) => handler({
-        app, request, response, next,
-      }))
-
-      return true
-    }
-
-    // open listen this `path`, allow all methods
-    server.use(path, (request, response, next) => {
-      const { method } = request
-
-      // validate method in allow list
-      const isAllowMethod = validateMethod(method, methods)
-      if (isAllowMethod) {
-        // call handler to render page
-        return handler({
-          app, request, response, next,
-        })
-      }
-
-      return next()
+    const onRoute = (request, response, next) => handler({
+      app, request, response, next,
     })
 
-    return true
+    const isMethodInvalid = !Array.isArray(methods) || methods.length === 0
+    const listMethods = isMethodInvalid ? METHOD_DEFAULT : methods
+
+    listMethods
+      .filter(m => METHOD_ALLOW.includes(m))
+      .forEach(m => server[m](path, onRoute))
   })
 
   return server
