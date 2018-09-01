@@ -1,6 +1,19 @@
 {
+  "eslint.enable": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.run": "onType",
+  "eslint.nodePath": "./node_modules/bin",
+  "eslint.autoFixOnSave": true,
   "files.exclude": {
+    ".next/": false,
+    ".nuxt/": true,
+    ".nyc_output/": true,
+    ".vscode/": false,
+    "lib/": false,
     "build/": false,
-    "node_modules/": true
-  }
+    "coverage/": true,
+    "docs": false,
+    "node_modules/": false,
+    "packages/*/lib": true,
+    "packag
 }

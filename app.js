@@ -1,39 +1,50 @@
-/**
- * name: web-front-starter
- * version: 0.1.0
- * author: Lam Hieu <lamhieu.vk@gmail.com>
- */
-
+import dotenv from 'dotenv'
 import express from 'express'
-import bodyParser from 'body-parser'
 import next from 'next'
-import session from 'express-session'
-import apiRoutes from 'api/routes'
+import { parse } from 'url'
+import applyMiddleware from 'server/applyMiddleware'
+import initSession from 'server/initSession'
+import registerApi from 'server/registerApi'
+import bindRoutes from 'server/bindRoutes'
 
-const port = parseInt(process.env.port, 10) || 3000
-const dev = process.env.mode !== 'production'
-const app = next({ dev })
+// init config
+dotenv.config()
+
+// host infomation
+const port = parseInt(process.env.PORT, 10) || 3000
+const isProd = process.env.MODE === 'production'
+
+console.log({ isProd, env: process.env })
+
+// init app
+const app = next({ dev: !isProd })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   const server = express()
 
-  server.use(bodyParser.json())
+  applyMiddleware({ server })
 
-  server.use(session({
-    name: 'sid',
-    secret: 'super-secret-key',
-    resave: false,
-    unset: 'destroy',
-    saveUninitialized: false,
-    cookie: { maxAge: 60 * 1000 },
-  }))
+  initSession({ server })
 
-  server.use('/api', apiRoutes)
+  registerApi({ server })
 
-  server.get('/', (req, res) => app.render(req, res, '/Home', req.query))
+  // bindRoutes({ server, app })
 
-  server.get('*', (req, res) => handle(req, res))
+  // server.get('*', (req, res) => handler(req, res))
+  const routes = {
+    '/': { page: '/Home' },
+  }
+  server.get('*', (req, res) => {
+    const parsedUrl = parse(req.url, true)
+    const { pathname, query = {} } = parsedUrl
+    const route = routes[pathname]
+    console.log({ route, pathname })
+    if (route) {
+      return app.render(req, res, route.page, query)
+    }
+    return handle(req, res)
+  })
 
   server.listen(port, (err) => {
     if (err) throw err
