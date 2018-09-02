@@ -1,5 +1,6 @@
 /* flow */
 import React, { PureComponent } from 'react'
+import io from 'socket.io-client'
 import axios from 'axios'
 
 class Home extends PureComponent {
@@ -9,6 +10,21 @@ class Home extends PureComponent {
     return { data }
   }
 
+  componentDidMount() {
+    const socket = io.connect('ws://localhost:3001', {
+      path: '/ws',
+      query: {
+        token: 'abc',
+      },
+      transports: ['websocket', 'polling'],
+    })
+
+    socket.on('from server', (data) => {
+      console.log(data)
+    })
+
+    console.log({ socket })
+  }
 
   render() {
     const { data } = this.props

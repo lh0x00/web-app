@@ -10,7 +10,7 @@
     "api/*.js",
     "config/*.js",
     "db/*.js",
-    "pages/*.js",
+    "pages/_document.js",
     "server/*.js"
   ],
   "ext": "js json",

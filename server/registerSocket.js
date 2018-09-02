@@ -1,17 +1,33 @@
 import http from 'http'
-import socketIO from 'socket.io'
+import SocketIO from 'socket.io'
 
 type TRegisterSocket = {
   server: any,
 }
 
 function registerSocket({ server }: TRegisterSocket): any {
-  const io = socketIO(http.Server(server), {
+  const ws = http.Server(server)
+
+  const io = SocketIO(ws, {
     path: '/ws',
-    serveClient: false,
-    pingInterval: 10000,
-    pingTimeout: 5000,
-    cookie: false,
+  })
+
+  io.listen(3001)
+
+  io.on('connection', (socket) => {
+    console.log('connected')
+
+    socket.on('from client', (data) => {
+      console.log({ data })
+    })
+
+    setTimeout(() => {
+      socket.emit('from server', { abc: 'value abc' })
+    }, 3000)
+
+    socket.on('disconnecting', () => {
+      console.log('disconnecting')
+    })
   })
 
   return server
