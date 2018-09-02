@@ -4,5 +4,9 @@
   },
   "db": {
     "url": "mongodb://localhost:27017/app-starter"
+  },
+  "session": {
+    "name": "sid",
+    "secret": "media-app-session"
   }
 }

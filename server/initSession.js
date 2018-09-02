@@ -1,3 +1,4 @@
+import config from 'config'
 import session from 'express-session'
 
 type TInitSession = {
@@ -6,8 +7,8 @@ type TInitSession = {
 
 function initSession({ server }: TInitSession): any {
   server.use(session({
-    name: process.env.SESSION_ID,
-    secret: process.env.SESSION_KEY,
+    name: config.session.name,
+    secret: config.session.secret,
     resave: false,
     unset: 'destroy',
     saveUninitialized: false,

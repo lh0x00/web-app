@@ -3,8 +3,16 @@ import mongoose from 'mongoose'
 
 mongoose.Promise = global.Promise
 
+type TConnectDatabase = {
+  server: any,
+  db?: string,
+}
+
 const connectDatabase = async (
-  db?: string = config.db.url,
+  {
+    server, // eslint-disable-line no-unused-vars
+    db = config.db.url,
+  }: TConnectDatabase,
 ): boolean => {
   const status = await mongoose
     .connect(db, {

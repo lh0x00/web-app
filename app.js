@@ -2,14 +2,16 @@ import dotenv from 'dotenv'
 import express from 'express'
 import next from 'next'
 import config from 'config'
-import connectDatabase from 'server/connectDatabase'
-import applyMiddleware from 'server/applyMiddleware'
-import handleSecure from 'server/handleSecure'
-import initSession from 'server/initSession'
-import bindPublic from 'server/bindPublic'
-import registerApi from 'server/registerApi'
-import bindRoutes from 'server/bindRoutes'
 import isProd from 'utils/isProduction'
+import {
+  connectDatabase,
+  applyMiddleware,
+  handleSecure,
+  initSession,
+  bindPublic,
+  registerApi,
+  bindRoutes,
+} from 'server'
 
 dotenv.config()
 
@@ -19,9 +21,9 @@ const app = next({ dev: !isProd })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
-  connectDatabase()
-
   const server = express()
+
+  connectDatabase({ server })
 
   applyMiddleware({ server })
 
