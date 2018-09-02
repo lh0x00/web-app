@@ -6,6 +6,7 @@ import handleSecure from 'server/handleSecure'
 import initSession from 'server/initSession'
 import bindPublic from 'server/bindPublic'
 import registerApi from 'server/registerApi'
+import registerSocket from 'server/registerSocket'
 import bindRoutes from 'server/bindRoutes'
 
 export {
@@ -15,5 +16,6 @@ export {
   initSession,
   bindPublic,
   registerApi,
+  registerSocket,
   bindRoutes,
 }

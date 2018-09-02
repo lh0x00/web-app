@@ -3,6 +3,7 @@ import express from 'express'
 import next from 'next'
 import config from 'config'
 import isProd from 'utils/isProduction'
+import { REGEXP } from 'utils/enums'
 import {
   connectDatabase,
   applyMiddleware,
@@ -10,6 +11,7 @@ import {
   initSession,
   bindPublic,
   registerApi,
+  registerSocket,
   bindRoutes,
 } from 'server'
 
@@ -35,13 +37,20 @@ app.prepare().then(() => {
 
   registerApi({ server })
 
+  registerSocket({ server })
+
   bindRoutes({ server, app })
 
-  server.get('*', (req, res) => handle(req, res))
+  server.get('*', (request, response) => {
+    const isNextPath = REGEXP.NEXT_PATH.test(request.url)
+    if (isNextPath) {
+      handle(request, response)
+    }
+  })
 
   server.listen(port, (err) => {
     if (err) throw err
     /* eslint-disable-next-line no-console */
-    console.log(`> http://localhost:${port}`)
+    console.log(`> ready on: http://localhost:${port}`)
   })
 })
