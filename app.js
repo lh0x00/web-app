@@ -6,6 +6,7 @@ import connectDatabase from 'server/connectDatabase'
 import applyMiddleware from 'server/applyMiddleware'
 import handleSecure from 'server/handleSecure'
 import initSession from 'server/initSession'
+import bindPublic from 'server/bindPublic'
 import registerApi from 'server/registerApi'
 import bindRoutes from 'server/bindRoutes'
 import isProd from 'utils/isProduction'
@@ -27,6 +28,8 @@ app.prepare().then(() => {
   handleSecure({ server })
 
   initSession({ server })
+
+  bindPublic({ server })
 
   registerApi({ server })
 
