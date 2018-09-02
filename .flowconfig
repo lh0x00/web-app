@@ -18,7 +18,11 @@ module.system.node.resolve_dirname=node_modules
 
 module.name_mapper='api' -> '<PROJECT_ROOT>/api'
 module.name_mapper='components' -> '<PROJECT_ROOT>/components'
-module.name_mapper='helpers' -> '<PROJECT_ROOT>/helpers'
+module.name_mapper='config' -> '<PROJECT_ROOT>/config'
 module.name_mapper='pages' -> '<PROJECT_ROOT>/pages'
+module.name_mapper='db' -> '<PROJECT_ROOT>/db'
+module.name_mapper='controllers' -> '<PROJECT_ROOT>/controllers'
+module.name_mapper='server' -> '<PROJECT_ROOT>/server'
+module.name_mapper='utils' -> '<PROJECT_ROOT>/utils'
 
 [strict]

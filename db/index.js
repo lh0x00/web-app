@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
 
-import User from 'collections/user'
+import User from 'db/user'
 
 export { User }

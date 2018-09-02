@@ -7,10 +7,10 @@
   ],
   "watch": [
     "app.js",
-    "server/*.js",
-    "collections/*.js",
-    "api/routes/*.js",
-    "pages/_docmuent.js"
+    "api/*.js",
+    "config/*.js",
+    "db/*.js",
+    "pages/*.js"
   ],
   "ext": "js json",
   "execMap": {
