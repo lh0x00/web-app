@@ -10,7 +10,7 @@ class Home extends PureComponent {
     return { data }
   }
 
-  componentDidMount() {
+  onClick = () => {
     const socket = io.connect('ws://localhost:3001', {
       path: '/ws',
       query: {
@@ -19,8 +19,14 @@ class Home extends PureComponent {
       transports: ['websocket', 'polling'],
     })
 
-    socket.on('from server', (data) => {
-      console.log(data)
+    const room = prompt('room id')
+
+    socket.on('connect', (data) => {
+      socket.emit('join room', room)
+    })
+
+    socket.on('message', (data) => {
+      console.log('incoming message:', data)
     })
 
     console.log({ socket })
@@ -30,7 +36,12 @@ class Home extends PureComponent {
     const { data } = this.props
     // console.log({ data })
     return (
-      <div>home!</div>
+      <div>
+        <div>welcome to home!</div>
+        <div>
+          <button onClick={this.onClick}>room 1</button>
+        </div>
+      </div>
     )
   }
 }

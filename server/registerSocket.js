@@ -17,13 +17,13 @@ function registerSocket({ server }: TRegisterSocket): any {
   io.on('connection', (socket) => {
     console.log('connected')
 
-    socket.on('from client', (data) => {
-      console.log({ data })
-    })
+    socket.on('join room', (room) => {
+      socket.join(room)
 
-    setTimeout(() => {
-      socket.emit('from server', { abc: 'value abc' })
-    }, 3000)
+      socket.on('message', (message) => {
+        socket.to(room).emit('message', message)
+      })
+    })
 
     socket.on('disconnecting', () => {
       console.log('disconnecting')
