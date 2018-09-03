@@ -8,6 +8,7 @@ import bindPublic from 'server/bindPublic'
 import registerApi from 'server/registerApi'
 import registerSocket from 'server/registerSocket'
 import bindRoutes from 'server/bindRoutes'
+import authSocket from 'server/authSocket'
 
 export {
   connectDatabase,
@@ -18,4 +19,5 @@ export {
   registerApi,
   registerSocket,
   bindRoutes,
+  authSocket,
 }

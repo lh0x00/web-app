@@ -17,6 +17,13 @@ class Home extends PureComponent {
         token: 'abc',
       },
       transports: ['websocket', 'polling'],
+      transportOptions: {
+        polling: {
+          extraHeaders: {
+            'x-clientid': 'abc',
+          },
+        },
+      },
     })
 
     const room = prompt('room id')

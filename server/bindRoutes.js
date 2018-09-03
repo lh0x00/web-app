@@ -13,6 +13,14 @@ const allRoutes = {
       app, page: '/Home', request, response, query: {}, next,
     }),
   },
+  '/other': {
+    methods: ['post', 'get'],
+    handler: ({
+      app, request, response, next,
+    }) => renderPage({
+      app, page: '/Home', request, response, query: {}, next,
+    }),
+  },
 }
 
 type TBindRoutes = {

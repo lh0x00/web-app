@@ -1,6 +1,6 @@
 import isProd from 'utils/isProduction'
-import prodConfig from 'config/production.json'
-import devConfig from 'config/development.json'
+import prodConfig from 'config/production'
+import devConfig from 'config/development'
 
 const config = isProd ? prodConfig : devConfig
 

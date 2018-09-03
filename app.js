@@ -4,16 +4,14 @@ import next from 'next'
 import config from 'config'
 import isProd from 'utils/isProduction'
 import { REGEXP } from 'utils/enums'
-import {
-  connectDatabase,
-  applyMiddleware,
-  handleSecure,
-  initSession,
-  bindPublic,
-  registerApi,
-  registerSocket,
-  bindRoutes,
-} from 'server'
+import connectDatabase from 'server/connectDatabase'
+import applyMiddleware from 'server/applyMiddleware'
+import handleSecure from 'server/handleSecure'
+import initSession from 'server/initSession'
+import bindPublic from 'server/bindPublic'
+import registerApi from 'server/registerApi'
+import registerSocket from 'server/registerSocket'
+import bindRoutes from 'server/bindRoutes'
 
 dotenv.config()
 
