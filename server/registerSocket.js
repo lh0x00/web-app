@@ -16,7 +16,7 @@ function registerSocket({ server }: TRegisterSocket): any {
     cookie: false,
   })
 
-  authSocket({ io })
+  authSocket({ server, io })
 
   io.on('connection', (socket) => {
     console.log('connected')

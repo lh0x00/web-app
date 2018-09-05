@@ -1,6 +1,6 @@
 import compression from 'compression'
 import bodyParser from 'body-parser'
-import isProd from 'utils/isProduction'
+import isProd from 'lib/utils/isProduction'
 
 type TApplyMiddleWare = {
   server: any,

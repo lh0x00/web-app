@@ -1,12 +1,4 @@
-import { parse } from 'url'
-import config from 'config'
-
-function validOrigin(origin: string): boolean {
-  const { server } = config
-  const { hostname, port } = parse(origin)
-
-  return hostname === server.hostname && port === server.port
-}
+import validOriginOfRequest from 'lib/utils/validOriginOfRequest'
 
 type TAuthSocket = {
   io: any,
@@ -14,15 +6,16 @@ type TAuthSocket = {
 
 function authSocket({ io }: TAuthSocket): any {
   io.use((socket: TSocket, next: Function) => {
-    const { handshake } = socket
-    const { headers } = handshake
-
-    const isValidHost = validOrigin(headers.origin)
+    const { handshake } = socket || {}
+    const { headers } = handshake || {}
+    const { origin } = headers || {}
+    const isValidHost = validOriginOfRequest(origin)
     if (!isValidHost) {
-      return next(new Error('authentication error'))
+      return false
     }
 
     next()
+    return true
   })
 
   return io

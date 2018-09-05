@@ -1,4 +1,3 @@
-/* flow */
 import React, { PureComponent } from 'react'
 import io from 'socket.io-client'
 import axios from 'axios'
@@ -17,12 +16,8 @@ class Home extends PureComponent {
         token: 'abc',
       },
       transports: ['websocket', 'polling'],
-      transportOptions: {
-        polling: {
-          extraHeaders: {
-            'x-clientid': 'abc',
-          },
-        },
+      extraHeaders: {
+        Authorization: 'Bearer authorization_token_here',
       },
     })
 
