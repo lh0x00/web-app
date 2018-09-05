@@ -8,12 +8,12 @@
     ".next/": false,
     ".nuxt/": true,
     ".nyc_output/": true,
-    ".vscode/": false,
+    ".vscode/": true,
     "lib/": false,
     "build/": false,
     "coverage/": true,
     "docs": false,
-    "node_modules/": false,
+    "node_modules/": true,
     "packages/*/lib": true
   }
 }
