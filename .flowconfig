@@ -23,6 +23,6 @@ module.name_mapper='pages' -> '<PROJECT_ROOT>/pages'
 module.name_mapper='db' -> '<PROJECT_ROOT>/db'
 module.name_mapper='controllers' -> '<PROJECT_ROOT>/controllers'
 module.name_mapper='server' -> '<PROJECT_ROOT>/server'
-module.name_mapper='utils' -> '<PROJECT_ROOT>/utils'
+module.name_mapper='lib' -> '<PROJECT_ROOT>/lib'
 
 [strict]

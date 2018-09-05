@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import io from 'socket.io-client'
 import axios from 'axios'
+import SOCKET from 'lib/enums/socket'
 
 class Home extends PureComponent {
   static async getInitialProps() {
@@ -10,15 +11,12 @@ class Home extends PureComponent {
   }
 
   onClick = () => {
-    const socket = io.connect('ws://localhost:3001', {
-      path: '/ws',
+    const socket = io.connect('ws://localhost:3001/example', {
+      path: SOCKET.PATH,
       query: {
         token: 'abc',
       },
-      transports: ['websocket', 'polling'],
-      extraHeaders: {
-        Authorization: 'Bearer authorization_token_here',
-      },
+      // transports: ['websocket', 'polling'],
     })
 
     const room = prompt('room id')
