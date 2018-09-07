@@ -4,19 +4,19 @@ import axios from 'axios'
 import SOCKET from 'lib/enums/socket'
 
 class Home extends PureComponent {
-  static async getInitialProps() {
-    const res = await axios('http://localhost:3000/api/example')
-    const data = await res.data
-    return { data }
-  }
+  // static async getInitialProps() {
+  //   const res = await axios('http://localhost:4000/api/example')
+  //   const data = await res.data
+  //   return { data }
+  // }
 
   onClick = () => {
-    const socket = io.connect('ws://localhost:3001/example', {
+    console.log({ x: `${SOCKET.PROTOCOL}//${SOCKET.HOSTNAME}:${SOCKET.PORT}` })
+    const socket = io.connect(`${SOCKET.PROTOCOL}//${SOCKET.HOSTNAME}:${SOCKET.PORT}/example`, {
       path: SOCKET.PATH,
       query: {
         token: 'abc',
       },
-      // transports: ['websocket', 'polling'],
     })
 
     const room = prompt('room id')

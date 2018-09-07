@@ -1,7 +1,7 @@
 export default {
   server: {
     hostname: 'localhost',
-    port: 3000,
+    port: 4000,
   },
   db: {
     url: 'mongodb://localhost:27017/app-starter',
@@ -12,7 +12,7 @@ export default {
   },
   socket: {
     hostname: 'localhost',
-    port: 3001,
+    port: 4001,
     path: '/ws',
     pingInterval: 10000,
     pingTimeout: 5000,

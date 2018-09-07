@@ -42,7 +42,7 @@ app.prepare().then(() => {
   server.get('*', (request, response) => {
     const isNextPath = REGEXP.NEXT_PATH.test(request.url)
     if (isNextPath) {
-      handle(request, response)
+      return handle(request, response)
     }
   })
 

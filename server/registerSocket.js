@@ -14,7 +14,7 @@ function registerSocket({ server }: TRegisterSocket): any {
   const ws = http.Server(server)
 
   const io = SocketIO(ws, {
-    path: SOCKET.PATH,
+    path: socketConfig.path,
     pingInterval: socketConfig.pingInterval,
     pingTimeout: socketConfig.pingTimeout,
     cookie: socketConfig.cookie,
@@ -56,7 +56,7 @@ function registerSocket({ server }: TRegisterSocket): any {
     })
   })
 
-  io.listen(3001)
+  io.listen(socketConfig.port)
 
   return server
 }
