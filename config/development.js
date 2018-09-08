@@ -4,7 +4,7 @@ export default {
     port: 4000,
   },
   db: {
-    url: 'mongodb://localhost:27017/app-starter',
+    url: 'mongodb://localhost:27017/media-app',
   },
   session: {
     name: 's-id',

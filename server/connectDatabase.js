@@ -17,7 +17,6 @@ const connectDatabase = async (
   const status = await mongoose
     .connect(db, {
       useNewUrlParser: true,
-      useCreateIndex: true,
     })
     .then(() => {
       console.log('[db] connection to database successfully') // eslint-disable-line no-console
@@ -32,4 +31,3 @@ const connectDatabase = async (
 }
 
 export default connectDatabase
-

@@ -2,7 +2,7 @@ import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document<TProps, TState> {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: TProps): object {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }
