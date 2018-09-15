@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import imageSchema from 'db/schema/image'
 
 const schema = new mongoose.Schema({
   id: String,
@@ -12,6 +13,7 @@ const schema = new mongoose.Schema({
     type: { type: String },
     coordinates: [],
   },
+  images: [imageSchema],
   workTime: {
     monday: [String],
     tuesday: [String],

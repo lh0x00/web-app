@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import imageSchema from 'db/schema/image'
 
 const schema = new mongoose.Schema({
   id: String,
@@ -7,10 +8,7 @@ const schema = new mongoose.Schema({
   title: String,
   description: String,
   detail: Object,
-  images: [{
-    id: String,
-    description: String,
-  }],
+  images: [imageSchema],
   createdAt: {
     type: Date,
     default: Date.now,

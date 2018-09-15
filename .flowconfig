@@ -1,11 +1,11 @@
 [ignore]
-node_modules
-build
+.*/node_modules/.*
+.*/build/.*
 
 [include]
 
 [libs]
-types/
+types
 
 [lints]
 

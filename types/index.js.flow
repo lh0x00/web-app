@@ -1,12 +1,17 @@
 /* @flow */
-/* eslint-disable no-unused-vars */
 
-type TMyDocument = { renderPage: Function }
+/* eslint-disable no-unused-vars */
 
 type object = { [key: string]: any }
 
-type TProps = object
+type PComponent = object
+
+type SComponent = object
 
 type TState = object
 
-type TSocket = obj
+type TSocket = object
+
+type TInputChangeEvent = {
+  target: object
+}

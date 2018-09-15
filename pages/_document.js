@@ -1,8 +1,8 @@
 import React from 'react'
 import Document, { Head, Main, NextScript } from 'next/document'
 
-export default class MyDocument extends Document<TProps, TState> {
-  static async getInitialProps(ctx: TProps): object {
+export default class MyDocument extends Document<PComponent, SComponent> {
+  static async getInitialProps(ctx: object): object {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }

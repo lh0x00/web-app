@@ -8,4 +8,9 @@ router.get('/example', async (request, response) => {
   response.status(201).json({ status: 'OK' })
 })
 
+router.post('/login', async (request, response) => {
+  const x = await User.find({})
+  response.status(201).json({ status: 'OK' })
+})
+
 export default router

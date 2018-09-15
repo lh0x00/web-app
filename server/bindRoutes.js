@@ -21,6 +21,14 @@ const allRoutes = {
       app, page: '/Home', request, response, query: {}, next,
     }),
   },
+  '/login': {
+    methods: ['post', 'get'],
+    handler: ({
+      app, request, response, next,
+    }) => renderPage({
+      app, page: '/Login', request, response, query: {}, next,
+    }),
+  },
 }
 
 type TBindRoutes = {
