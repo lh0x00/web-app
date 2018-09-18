@@ -15,6 +15,7 @@ module.exports = function config(api) {
       {
         root: [
           './',
+          './src',
         ],
       },
     ],
@@ -27,6 +28,7 @@ module.exports = function config(api) {
 
   const ignore = [
     '**/__test__',
+    '**/**/__test__',
   ]
 
   return {

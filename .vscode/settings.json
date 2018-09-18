@@ -15,5 +15,6 @@
     "docs": false,
     "node_modules/": true,
     "packages/*/lib": true
-  }
+  },
+  "prettier.printWidth": 100
 }

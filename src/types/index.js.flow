@@ -1,0 +1,23 @@
+/* @flow */
+
+/* eslint-disable no-unused-vars */
+
+type object = {
+  [key: string]: any,
+}
+
+type email = string
+
+type password = string
+
+type PropsComponent = object
+
+type StateComponent = object
+
+type TState = object
+
+type TSocket = object
+
+type TInputChangeEvent = {
+  target: object,
+}

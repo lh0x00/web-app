@@ -1,0 +1,15 @@
+/* @flow */
+
+/* eslint-disable no-unused-vars */
+
+type RegisterFields = {
+  username: string,
+  email: email,
+  password: password,
+}
+
+type LoginFields = {
+  username: string,
+  email?: email,
+  password: password,
+}
