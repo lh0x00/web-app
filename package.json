@@ -14,7 +14,7 @@
     "clean": "rimraf dist",
     "lint": "eslint src --fix",
     "flow": "flow",
-    "stats": "webpack-bundle-analyzer dist/dist/stats.json",
+    "stats": "webpack-bundle-analyzer dist/dist/server/stats.json",
     "serve": "npm run clean && npm run lint && npm run build && npm run start",
     "test": "jest"
   },
