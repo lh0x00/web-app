@@ -3,11 +3,7 @@ import User from 'db/user'
 
 class UserController {
   static async register(data: RegisterFields) {
-    const {
-      username,
-      email,
-      password,
-    } = data
+    const { username, email, password } = data
 
     const user = await User.create({ username, email, password })
     if (!user) {
@@ -18,26 +14,29 @@ class UserController {
   }
 
   static logged(request: any, user: object) {
+    const userParsed = { ...user }
+
+    if (userParsed.password) {
+      delete userParsed.password
+    }
+
     request.session.user = user
     request.session.isLogged = new Date()
   }
 
   static async login(data: LoginFields) {
-    const {
-      username,
-      password,
-    } = data
+    const { username, password } = data
 
-    const user = await User.findOne({
-      $or: [
-        { email: username },
-        { username },
-      ],
-    }, {
-      email: 1,
-      username: 1,
-      password: 1,
-    })
+    const user = await User.findOne(
+      {
+        $or: [{ email: username }, { username }],
+      },
+      {
+        email: 1,
+        username: 1,
+        password: 1,
+      },
+    )
     if (!user) {
       throw new ErrorLogger('account.login.notFound')
     }

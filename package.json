@@ -11,7 +11,7 @@
     "build:app": "cross-env MODE=production babel src -d dist",
     "build": "npm run build:app && npm run build:next",
     "start": "cross-env MODE=production node dist/app.js",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist src/dist",
     "lint": "eslint src --fix",
     "flow": "flow",
     "stats": "webpack-bundle-analyzer dist/dist/server/stats.json",

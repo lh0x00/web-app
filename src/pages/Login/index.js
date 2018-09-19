@@ -1,19 +1,25 @@
 import React, { PureComponent } from 'react'
 import LoginForm from 'components/LoginForm'
+import compose from 'lib/hoc/compose'
+import withSession from 'lib/hoc/withSession'
+import withRouter from 'lib/hoc/withRouter'
+import PATH from 'lib/enums/path'
 
-class Login extends PureComponent<PropsComponent, StateComponent> {
-  static async getInitialProps(ctx: object): object {
-    const { session } = ctx.req || {}
-    return { session }
+type PLogin = {
+  router: Router,
+}
+class Login extends PureComponent<PLogin, StateComponent> {
+  onSuccess = (user: UserData) => {
+    const { router } = this.props
+    router.replace(PATH.HOME)
+    console.log(user, 'user') // eslint-disable-line no-console
   }
 
-  onSuccess = () => {}
-
-  onFailed = () => {}
+  onFailed = (error: Error) => {
+    console.log(error, 'error') // eslint-disable-line no-console
+  }
 
   render() {
-    const { data } = this.props
-    console.log(this.props)
     return (
       <div>
         <div>welcome to login!</div>
@@ -28,4 +34,7 @@ class Login extends PureComponent<PropsComponent, StateComponent> {
   }
 }
 
-export default Login
+export default compose(
+  withSession,
+  withRouter,
+)(Login)

@@ -10,7 +10,6 @@ function authSocket({ io }: TAuthSocket): any {
     const { headers } = handshake || {}
     const { origin } = headers || {}
     const isValidHost = validOriginOfRequest(origin)
-    console.log({ isValidHost, origin })
     if (!isValidHost) {
       return false
     }

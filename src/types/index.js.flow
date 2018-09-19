@@ -10,6 +10,8 @@ type email = string
 
 type password = string
 
+type Component = any
+
 type PropsComponent = object
 
 type StateComponent = object
@@ -20,4 +22,24 @@ type TSocket = object
 
 type TInputChangeEvent = {
   target: object,
+}
+
+type Router = {
+  asPath: string,
+  back: void,
+  beforePopState: void,
+  events: void,
+  pathname: string,
+  prefetch: void,
+  push: void,
+  query: object,
+  reload: void,
+  replace: void,
+}
+
+type UserData = any
+
+type Error = {
+  name: string,
+  message: string,
 }

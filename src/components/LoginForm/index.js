@@ -20,10 +20,7 @@ type SLoginForm = {
 class LoginForm extends PureComponent<PLoginForm, SLoginForm> {
   constructor(props: PLoginForm) {
     super(props)
-    const {
-      username,
-      password,
-    } = props
+    const { username, password } = props
 
     this.state = {
       username,
@@ -38,36 +35,59 @@ class LoginForm extends PureComponent<PLoginForm, SLoginForm> {
     })
   }
 
+  onSuccess = (error) => {
+    const { onSuccess } = this.props
+
+    if (_isFunction(onSuccess)) {
+      onSuccess(error)
+    }
+  }
+
+  onFailed = (error) => {
+    const { onFailed } = this.props
+
+    if (_isFunction(onFailed)) {
+      onFailed(error)
+    }
+  }
+
   onSubmit = () => {
-    const {
-      username,
-      password,
-    } = this.state
-    const {
-      onSuccess,
-      onFailed,
-    } = this.props
+    const { username, password } = this.state
 
     const request = new Request('login', { username, password })
-    request.fetch().then((data) => {
-      const { user } = data || {}
-      if (_isFunction(onSuccess)) {
-        onSuccess(user)
-      }
-    }).catch((error) => {
-      if (_isFunction(onFailed)) {
-        onFailed(error)
-      }
-    })
+    request
+      .fetch()
+      .then((data) => {
+        const { status, error, data: user } = data || {}
+        if (!status) {
+          this.onFailed(error)
+          return false
+        }
+        this.onSuccess(user)
+        return true
+      })
+      .catch(this.onFailed)
   }
 
   render() {
     return (
       <div>
         <Form>
-          <Input name="username" type="text" placeholder="username" onChange={this.onChangeField} />
-          <Input name="password" type="password" placeholder="password" onChange={this.onChangeField} />
-          <Button type="button" onClick={this.onSubmit}>Login</Button>
+          <Input
+            name="username"
+            type="text"
+            placeholder="username"
+            onChange={this.onChangeField}
+          />
+          <Input
+            name="password"
+            type="password"
+            placeholder="password"
+            onChange={this.onChangeField}
+          />
+          <Button type="button" onClick={this.onSubmit}>
+            Login
+          </Button>
         </Form>
       </div>
     )
