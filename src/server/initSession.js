@@ -10,7 +10,7 @@ function initSession({ server }: TInitSession): any {
     session({
       name: config.session.name,
       secret: config.session.secret,
-      resave: false,
+      resave: true,
       unset: 'destroy',
       saveUninitialized: false,
       cookie: {

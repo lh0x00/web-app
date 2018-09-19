@@ -44,6 +44,19 @@ const allRoutes = {
       next,
     }),
   },
+  '/register': {
+    methods: ['post', 'get'],
+    handler: ({
+      app, request, response, next,
+    }) => renderPage({
+      app,
+      page: '/Register',
+      request,
+      response,
+      query: {},
+      next,
+    }),
+  },
 }
 
 type TBindRoutes = {

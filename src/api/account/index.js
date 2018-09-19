@@ -25,6 +25,7 @@ router.post('/account/register', (request, response) => {
     username,
     email,
     password,
+    isAutoLogin,
   } = request.body || {}
 
   UserController.register({
@@ -32,7 +33,9 @@ router.post('/account/register', (request, response) => {
     email,
     password,
   }).then((user) => {
-    UserController.logged(request, user)
+    if (isAutoLogin) {
+      UserController.logged(request, user)
+    }
     response.status(200).json({ status: true, data: user })
   }).catch((error) => {
     response.status(200).json({ status: false, error })

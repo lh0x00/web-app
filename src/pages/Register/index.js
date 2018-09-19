@@ -1,32 +1,34 @@
 import React, { PureComponent } from 'react'
-import LoginForm from 'components/LoginForm'
+import RegisterForm from 'components/RegisterForm'
 import compose from 'lib/hoc/compose'
 import withSession from 'lib/hoc/withSession'
 import withRouter from 'lib/hoc/withRouter'
 import PATH from 'lib/enums/path'
 
-type PLogin = {} & Page
+type PRegister = {} & Page
 
-class Login extends PureComponent<PLogin, StateComponent> {
+class Register extends PureComponent<PRegister, StateComponent> {
   onSuccess = (user: UserData) => {
     const { router } = this.props
+
+    // moving to home page
     router.replace(PATH.HOME)
-    console.log(user, 'user') // eslint-disable-line no-console
+
+    // eslint-disable-next-line no-console
+    console.log(user, 'user')
   }
 
   onFailed = (error: Error) => {
-    console.log(error, 'error') // eslint-disable-line no-console
+    // eslint-disable-next-line no-console
+    console.log(error, 'error')
   }
 
   render() {
     return (
       <div>
-        <div>welcome to login!</div>
+        <div>welcome to register!</div>
         <div>
-          <LoginForm
-            onSuccess={this.onSuccess}
-            onFailed={this.onFailed}
-          />
+          <RegisterForm onSuccess={this.onSuccess} onFailed={this.onFailed} />
         </div>
       </div>
     )
@@ -36,4 +38,4 @@ class Login extends PureComponent<PLogin, StateComponent> {
 export default compose(
   withSession,
   withRouter,
-)(Login)
+)(Register)

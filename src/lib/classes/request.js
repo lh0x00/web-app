@@ -1,14 +1,15 @@
 import axios from 'axios'
 import _get from 'lodash/get'
-import _isFunction from 'lodash/isFunction'
-import Error from 'lib/classes/error'
+import ErrorLogger from 'lib/classes/error'
 import REQUEST from 'lib/enums/request'
 
 class Request {
+  request: any
+
   constructor(name, ...rest) {
     const handle = _get(this, name)
-    if (!_isFunction(handle)) {
-      throw new Error('request.notFoundHandler')
+    if (!handle) {
+      throw new ErrorLogger('request.notFoundHandler')
     }
 
     handle(...rest)
@@ -30,28 +31,37 @@ class Request {
 
   fetch = () => {
     const { request } = this
-    const result = request
-      .then(({ data }) => data)
-      .catch((error) => {
-        console.error(error) // eslint-disable-line no-console
-        return error
-      })
+    const result = request.then(({ data }) => data).catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error)
+      return error
+    })
     return result
   }
 
-  login = ({
-    username,
-    password,
-  }: LoginFields) => {
+  login = ({ username, password }: LoginFields) => {
     const url = REQUEST.API.LOGIN
     const sender = this.send(url, { username, password })
 
-    const request = sender
-      .then(data => data)
-      .catch((error) => {
-        console.error(error) // eslint-disable-line no-console
-        return error
-      })
+    const request = sender.then(data => data).catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error)
+      return error
+    })
+
+    this.request = request
+    return request
+  }
+
+  register = ({ username, email, password }: RegisterFields) => {
+    const url = REQUEST.API.REGISTER
+    const sender = this.send(url, { username, email, password })
+
+    const request = sender.then(data => data).catch((error) => {
+      // eslint-disable-next-line no-console
+      console.error(error)
+      return error
+    })
 
     this.request = request
     return request

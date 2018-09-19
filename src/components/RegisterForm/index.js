@@ -6,26 +6,31 @@ import Button from 'components/Button'
 
 import fields from './fields'
 
-type PLoginForm = {
+type PRegisterForm = {
   username?: string,
   password?: string,
+  email?: string,
+  isAutoLogin?: boolean,
   onSuccess?: void,
   onFailed?: void,
 }
 
-type SLoginForm = {
+type SRegisterForm = {
   username?: string,
   password?: string,
+  repassword?: string,
+  email?: string,
 }
 
-class LoginForm extends PureComponent<PLoginForm, SLoginForm> {
-  constructor(props: PLoginForm) {
+class RegisterForm extends PureComponent<PRegisterForm, SRegisterForm> {
+  constructor(props: PRegisterForm) {
     super(props)
-    const { username, password } = props
+    const { username, password, email } = props
 
     this.state = {
       username,
       password,
+      email,
     }
   }
 
@@ -47,9 +52,9 @@ class LoginForm extends PureComponent<PLoginForm, SLoginForm> {
   }
 
   onSubmit = () => {
-    const { username, password } = this.state
+    const { username, password, email } = this.state
 
-    const request = new Request('login', { username, password })
+    const request = new Request('register', { username, password, email })
     request
       .fetch()
       .then((data) => {
@@ -91,7 +96,7 @@ class LoginForm extends PureComponent<PLoginForm, SLoginForm> {
             ([name, item]) => this.renderField({ name, ...item }),
           )}
           <Button type="button" onClick={this.onSubmit}>
-            Login
+            Register
           </Button>
         </Form>
       </div>
@@ -99,4 +104,4 @@ class LoginForm extends PureComponent<PLoginForm, SLoginForm> {
   }
 }
 
-export default LoginForm
+export default RegisterForm
