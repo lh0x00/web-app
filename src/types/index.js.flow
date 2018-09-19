@@ -43,3 +43,10 @@ type Error = {
   name: string,
   message: string,
 }
+
+type Session = any
+
+type Page = {
+  session: Session,
+  router: Router,
+}

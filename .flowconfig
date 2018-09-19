@@ -6,7 +6,7 @@
 [include]
 
 [libs]
-types/
+src/types/
 
 [lints]
 
