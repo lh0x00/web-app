@@ -1,0 +1,34 @@
+[ignore]
+.*/node_modules/.*
+.*/dist/.*
+.*/src/dist/.*
+
+[include]
+
+[libs]
+src/types/
+
+[lints]
+
+[options]
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.yml
+
+module.system.node.resolve_dirname=.
+module.system.node.resolve_dirname=src
+module.system.node.resolve_dirname=node_modules
+
+module.name_mapper='api' -> '<PROJECT_ROOT>/src/api'
+module.name_mapper='components' -> '<PROJECT_ROOT>/src/components'
+module.name_mapper='config' -> '<PROJECT_ROOT>/src/config'
+module.name_mapper='db' -> '<PROJECT_ROOT>/src/db'
+module.name_mapper='lib' -> '<PROJECT_ROOT>/src/lib'
+module.name_mapper='page' -> '<PROJECT_ROOT>/src/page'
+module.name_mapper='scripts' -> '<PROJECT_ROOT>/src/scripts'
+module.name_mapper='server' -> '<PROJECT_ROOT>/src/server'
+module.name_mapper='static' -> '<PROJECT_ROOT>/src/static'
+module.name_mapper='types' -> '<PROJECT_ROOT>/src/types'
+
+[strict]

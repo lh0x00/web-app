@@ -1,0 +1,90 @@
+import React, { PureComponent } from 'react'
+import io from 'socket.io-client'
+import axios from 'axios'
+import SOCKET from 'lib/enums/socket'
+
+class Home extends PureComponent {
+  // static async getInitialProps() {
+  //   const res = await axios('http://localhost:4000/api/example')
+  //   const data = await res.data
+  //   return { data }
+  // }
+
+  onClick = () => {
+    console.log({ x: `${SOCKET.PROTOCOL}//${SOCKET.HOSTNAME}:${SOCKET.PORT}` })
+    const socket = io.connect(`${SOCKET.PROTOCOL}//${SOCKET.HOSTNAME}:${SOCKET.PORT}/example`, {
+      path: SOCKET.PATH,
+      query: {
+        token: 'abc',
+      },
+    })
+
+    const room = prompt('room id')
+
+    socket.on('connect', (data) => {
+      socket.emit('join room', room)
+    })
+
+    socket.on('message', (data) => {
+      console.log('incoming message:', data)
+    })
+
+    this.socket = socket
+
+    console.log({ socket })
+  }
+
+  onChange = (e) => {
+    console.log(e.target.files)
+    this.socket.emit('message', e.target.files)
+  }
+
+  onCamera = () => {
+    // const socket = io.connect('127.0.0.1:9000')
+    navigator.getUserMedia = navigator.getUserMedia
+      || navigator.webkitGetUserMedia
+      || navigator.mozGetUserMedia
+      || navigator.msGetUserMedia
+
+
+    let cam
+    navigator.getUserMedia({ video: true, audio: true }, (stream) => {
+      // var call = peer.call('another-peers-id', stream);
+      // call.on('stream', function(remoteStream) {
+      // Show stream in some video/canvas element.
+      // });
+      const video = document.querySelector('video')
+      // Older browsers may not have srcObject
+      if ('srcObject' in video) {
+        video.srcObject = stream
+      } else {
+        // Avoid using this in new browsers, as it is going away.
+        video.src = window.URL.createObjectURL(stream)
+      }
+      video.onloadedmetadata = function (e) {
+        video.play()
+      }
+      console.log(stream)
+    }, (err) => {
+      console.log('Failed to get local stream', err)
+    })
+  }
+
+  render() {
+    const { data } = this.props
+    // console.log({ data })
+    return (
+      <div>
+        <div>welcome to home!</div>
+        <div>
+          <button onClick={this.onClick}>room 1</button>
+          <button onClick={this.onCamera}>camera</button>
+          <input type="file" onChange={this.onChange} />
+          <video id="video" />
+        </div>
+      </div>
+    )
+  }
+}
+
+export default Home

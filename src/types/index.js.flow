@@ -1,0 +1,57 @@
+/* @flow */
+
+/* eslint-disable no-unused-vars */
+
+type object = {
+  [key: string]: any,
+}
+
+type email = string
+
+type password = string
+
+type Component = any
+
+type PropsComponent = object
+
+type StateComponent = object
+
+type TState = object
+
+type TSocket = object
+
+type TInputChangeEvent = {
+  target: object,
+}
+
+type Router = {
+  asPath: string,
+  back: void,
+  beforePopState: void,
+  events: void,
+  pathname: string,
+  prefetch: void,
+  push: void,
+  query: object,
+  reload: void,
+  replace: void,
+}
+
+type UserData = any
+
+type Error = {
+  name: string,
+  message: string,
+}
+
+type Session = any
+
+type Page = {
+  session: Session,
+  router: Router,
+}
+
+type FollowFields = {
+  follower: string,
+  following: string,
+}
