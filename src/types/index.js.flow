@@ -50,3 +50,8 @@ type Page = {
   session: Session,
   router: Router,
 }
+
+type FollowFields = {
+  follower: string,
+  following: string,
+}

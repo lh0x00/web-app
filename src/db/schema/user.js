@@ -1,9 +1,9 @@
-import mongoose from 'mongoose'
+import { Schema } from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const USER_PASSWORD_SALT_ROUNDS = 10
 
-const schema = new mongoose.Schema({
+const schema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -22,14 +22,6 @@ const schema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  following: [{
-    role: String,
-    id: String,
-  }],
-  followers: [{
-    role: String,
-    id: String,
-  }],
 }, {
   versionKey: false,
 })

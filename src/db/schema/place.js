@@ -1,7 +1,7 @@
-import mongoose from 'mongoose'
+import { Schema } from 'mongoose'
 import imageSchema from 'db/schema/image'
 
-const schema = new mongoose.Schema({
+const schema = new Schema({
   id: String,
   name: String,
   category: String,

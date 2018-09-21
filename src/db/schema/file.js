@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
+import { Schema } from 'mongoose'
 
-const schema = new mongoose.Schema({
+const schema = new Schema({
   path: String,
 }, {
   versionKey: false,

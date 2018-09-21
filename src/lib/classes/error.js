@@ -25,6 +25,28 @@ const errors = {
       message: 'Not found handler for request',
     }),
   },
+  follow: {
+    add: {
+      existed: () => ({
+        name: 'FollowError',
+        message: 'Follow is existed',
+      }),
+      insertFailed: () => ({
+        name: 'FollowError',
+        message: 'Follow is insert failed',
+      }),
+    },
+    remove: {
+      notExisted: () => ({
+        name: 'FollowError',
+        message: 'Follow is not existed',
+      }),
+      removeFailed: () => ({
+        name: 'FollowError',
+        message: 'Follow is remove failed',
+      }),
+    },
+  },
 }
 
 class ErrorLogger extends Error {
