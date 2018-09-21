@@ -12,7 +12,7 @@
     "build": "npm run build:app && npm run build:next",
     "start": "cross-env MODE=production node dist/app.js",
     "clean": "rimraf dist src/dist",
-    "lint": "eslint src --fix",
+    "lint": "eslint src",
     "flow": "flow",
     "stats": "webpack-bundle-analyzer dist/dist/server/stats.json",
     "serve": "npm run clean && npm run lint && npm run build && npm run start",
