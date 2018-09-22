@@ -3,7 +3,7 @@ import { Types, Schema } from 'mongoose'
 const schema = new Schema({
   follower: Types.ObjectId,
   following: Types.ObjectId,
-  time: {
+  createdAt: {
     type: Date,
     default: Date.now,
   },

@@ -14,12 +14,7 @@ class UserController {
   }
 
   static logged(request: any, user: object) {
-    const userParsed = { ...user }
-
-    if (userParsed.password) {
-      delete userParsed.password
-    }
-
+    user.password = null // eslint-disable-line no-param-reassign
     request.session.user = user
     request.session.isLogged = new Date()
   }

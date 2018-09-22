@@ -1,9 +1,8 @@
 {
-  "name": "media-app",
+  "name": "web-app",
   "version": "0.1.0",
   "main": "dist/index.js",
   "author": "Lam Hieu <lamhieu.vk@gmail.com>",
-  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "MODE=development nodemon src/app.js",
@@ -12,7 +11,7 @@
     "build": "npm run build:app && npm run build:next",
     "start": "cross-env MODE=production node dist/app.js",
     "clean": "rimraf dist src/dist",
-    "lint": "eslint src --fix",
+    "lint": "eslint src",
     "flow": "flow",
     "stats": "webpack-bundle-analyzer dist/dist/server/stats.json",
     "serve": "npm run clean && npm run lint && npm run build && npm run start",
@@ -24,6 +23,7 @@
     "@babel/core": "^7.0.0",
     "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/plugin-proposal-json-strings": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",

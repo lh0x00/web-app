@@ -36,7 +36,7 @@ const errors = {
         message: 'Follow is insert failed',
       }),
     },
-    add: {
+    remove: {
       notExisted: () => ({
         name: 'FollowError',
         message: 'Follow is not existed',

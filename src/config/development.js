@@ -4,11 +4,11 @@ export default {
     port: 4000,
   },
   db: {
-    url: 'mongodb://localhost:27017/media-app',
+    url: 'mongodb://localhost:27017/web-app',
   },
   session: {
     name: 's-id',
-    secret: 'media-app-session',
+    secret: 'web-app-session',
   },
   socket: {
     hostname: 'localhost',
