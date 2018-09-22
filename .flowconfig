@@ -30,5 +30,6 @@ module.name_mapper='scripts' -> '<PROJECT_ROOT>/src/scripts'
 module.name_mapper='server' -> '<PROJECT_ROOT>/src/server'
 module.name_mapper='static' -> '<PROJECT_ROOT>/src/static'
 module.name_mapper='types' -> '<PROJECT_ROOT>/src/types'
+module.name_mapper='routes' -> '<PROJECT_ROOT>/src/routes'
 
 [strict]

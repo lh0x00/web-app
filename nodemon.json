@@ -3,6 +3,7 @@
   "ignore": [
     "node_modules",
     "dist",
+    "*/__test__/*",
     "*.test.js"
   ],
   "watch": [
@@ -11,7 +12,8 @@
     "src/config/*.js",
     "src/db/*.js",
     "src/pages/_document.js",
-    "src/server/*.js"
+    "src/server/*.js",
+    "src/routes/*.js"
   ],
   "ext": "js json",
   "execMap": {

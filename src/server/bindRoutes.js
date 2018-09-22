@@ -1,63 +1,5 @@
 import { Router } from 'express'
-import renderPage from 'server/renderPage'
-
-const METHOD_ALLOW = ['get', 'post']
-const METHOD_DEFAULT = ['get']
-
-const allRoutes = {
-  '/': {
-    methods: ['post', 'get'],
-    handler: ({
-      app, request, response, next,
-    }) => renderPage({
-      app,
-      page: '/Home',
-      request,
-      response,
-      query: {},
-      next,
-    }),
-  },
-  '/other': {
-    methods: ['post', 'get'],
-    handler: ({
-      app, request, response, next,
-    }) => renderPage({
-      app,
-      page: '/Home',
-      request,
-      response,
-      query: {},
-      next,
-    }),
-  },
-  '/login': {
-    methods: ['post', 'get'],
-    handler: ({
-      app, request, response, next,
-    }) => renderPage({
-      app,
-      page: '/Login',
-      request,
-      response,
-      query: {},
-      next,
-    }),
-  },
-  '/register': {
-    methods: ['post', 'get'],
-    handler: ({
-      app, request, response, next,
-    }) => renderPage({
-      app,
-      page: '/Register',
-      request,
-      response,
-      query: {},
-      next,
-    }),
-  },
-}
+import routes, { METHOD_ALLOW, METHOD_DEFAULT } from 'routes'
 
 type TBindRoutes = {
   server: any,
@@ -67,11 +9,15 @@ type TBindRoutes = {
 function bindRoutes({ server, app }: TBindRoutes): any {
   const router = Router()
 
-  const pathAndConfigRoutes = Object.entries(allRoutes)
+  const pathAndConfigRoutes = Object.entries(routes)
   pathAndConfigRoutes.forEach(([path: string, config: object]) => {
     const { methods, handler } = config
 
-    const onRoute = (request: any, response: any, next: any): any => handler({
+    const onRoute = (
+      request: any,
+      response: any,
+      next: any,
+    ): any => handler({
       app,
       request,
       response,
@@ -80,8 +26,9 @@ function bindRoutes({ server, app }: TBindRoutes): any {
 
     const isMethodInvalid = !Array.isArray(methods) || methods.length === 0
     const listMethods = isMethodInvalid ? METHOD_DEFAULT : methods
-
-    listMethods.filter(m => METHOD_ALLOW.includes(m)).forEach(m => router[m](path, onRoute))
+    listMethods
+      .filter(m => METHOD_ALLOW.includes(m))
+      .forEach(m => router[m](path, onRoute))
   })
 
   server.use(router)
