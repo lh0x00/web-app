@@ -16,7 +16,8 @@
     "flow": "flow",
     "stats": "webpack-bundle-analyzer dist/dist/server/stats.json",
     "serve": "npm run clean && npm run lint && npm run build && npm run start",
-    "test": "jest"
+    "test": "jest",
+    "release": "standard-version"
   },
   "keywords": [],
   "devDependencies": {
@@ -48,6 +49,7 @@
     "jest": "^23.5.0",
     "nodemon": "^1.18.4",
     "rimraf": "^2.6.2",
+    "standard-version": "^4.4.0",
     "webpack-bundle-analyzer": "^2.13.1"
   },
   "dependencies": {
