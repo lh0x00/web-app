@@ -15,6 +15,7 @@ module.exports = function config(api) {
       {
         root: [
           './',
+          './src',
         ],
       },
     ],
@@ -22,11 +23,13 @@ module.exports = function config(api) {
     '@babel/plugin-syntax-import-meta',
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-json-strings',
+    '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-transform-runtime',
   ]
 
   const ignore = [
     '**/__test__',
+    '**/**/__test__',
   ]
 
   return {

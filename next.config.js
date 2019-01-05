@@ -9,7 +9,8 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
 })
 
 module.exports = {
-  distDir: 'build',
+  dir: 'src/pages',
+  distDir: 'dist',
   pageExtensions: ['jsx', 'js'],
   useFileSystemPublicRoutes: false,
   webpack: (config) => {

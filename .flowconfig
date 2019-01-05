@@ -1,11 +1,12 @@
 [ignore]
 .*/node_modules/.*
-.*/build/.*
+.*/dist/.*
+.*/src/dist/.*
 
 [include]
 
 [libs]
-types
+src/types/
 
 [lints]
 
@@ -16,15 +17,19 @@ module.file_ext=.json
 module.file_ext=.yml
 
 module.system.node.resolve_dirname=.
+module.system.node.resolve_dirname=src
 module.system.node.resolve_dirname=node_modules
 
-module.name_mapper='api' -> '<PROJECT_ROOT>/api'
-module.name_mapper='components' -> '<PROJECT_ROOT>/components'
-module.name_mapper='config' -> '<PROJECT_ROOT>/config'
-module.name_mapper='pages' -> '<PROJECT_ROOT>/pages'
-module.name_mapper='db' -> '<PROJECT_ROOT>/db'
-module.name_mapper='controllers' -> '<PROJECT_ROOT>/controllers'
-module.name_mapper='server' -> '<PROJECT_ROOT>/server'
-module.name_mapper='lib' -> '<PROJECT_ROOT>/lib'
+module.name_mapper='api' -> '<PROJECT_ROOT>/src/api'
+module.name_mapper='components' -> '<PROJECT_ROOT>/src/components'
+module.name_mapper='config' -> '<PROJECT_ROOT>/src/config'
+module.name_mapper='db' -> '<PROJECT_ROOT>/src/db'
+module.name_mapper='lib' -> '<PROJECT_ROOT>/src/lib'
+module.name_mapper='page' -> '<PROJECT_ROOT>/src/page'
+module.name_mapper='scripts' -> '<PROJECT_ROOT>/src/scripts'
+module.name_mapper='server' -> '<PROJECT_ROOT>/src/server'
+module.name_mapper='static' -> '<PROJECT_ROOT>/src/static'
+module.name_mapper='types' -> '<PROJECT_ROOT>/src/types'
+module.name_mapper='routes' -> '<PROJECT_ROOT>/src/routes'
 
 [strict]
