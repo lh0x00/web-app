@@ -25,6 +25,7 @@ module.exports = function config(api) {
     '@babel/plugin-proposal-json-strings',
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-transform-runtime',
+    ['styled-components', { ssr: true }],
   ]
 
   const ignore = [
