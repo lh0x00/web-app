@@ -1,4 +1,5 @@
 import React from 'react'
+import { Form as FormStyled } from './styles'
 
 type PForm = {
   children: any,
@@ -8,9 +9,9 @@ const Form = ({
   children,
   ...rest
 }: PForm): any => (
-  <form {...rest}>
+  <FormStyled {...rest}>
     {children}
-  </form>
+  </FormStyled>
 )
 
 export default Form

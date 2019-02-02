@@ -4,6 +4,7 @@ import Form from 'components/Form'
 import Input from 'components/Input'
 import Button from 'components/Button'
 
+import { LoginForm as LoginFormStyled } from './styles'
 import fields from './fields'
 
 type PLoginForm = {
@@ -85,7 +86,7 @@ class LoginForm extends PureComponent<PLoginForm, SLoginForm> {
   render() {
     const fieldOnKeys = Object.entries(fields)
     return (
-      <div>
+      <LoginFormStyled>
         <Form>
           {fieldOnKeys.map(
             ([name, item]) => this.renderField({ name, ...item }),
@@ -94,7 +95,7 @@ class LoginForm extends PureComponent<PLoginForm, SLoginForm> {
             Login
           </Button>
         </Form>
-      </div>
+      </LoginFormStyled>
     )
   }
 }

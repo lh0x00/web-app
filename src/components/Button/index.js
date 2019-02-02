@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button as ButtonStyled } from './styles'
 
 type PButton = {
   type: 'button' | 'submit' | 'reset',
@@ -13,13 +14,13 @@ const Button = ({
   ...rest
 }: PButton): any => (
   /* eslint-disable-next-line react/button-has-type */
-  <button
+  <ButtonStyled
     type={type}
     onClick={onClick}
     {...rest}
   >
     {children}
-  </button>
+  </ButtonStyled>
 )
 
 export default Button

@@ -4,6 +4,7 @@ import Form from 'components/Form'
 import Input from 'components/Input'
 import Button from 'components/Button'
 
+import { RegisterForm as RegisterFormStyled } from './styles'
 import fields from './fields'
 
 type PRegisterForm = {
@@ -90,7 +91,7 @@ class RegisterForm extends PureComponent<PRegisterForm, SRegisterForm> {
   render() {
     const fieldOnKeys = Object.entries(fields)
     return (
-      <div>
+      <RegisterFormStyled>
         <Form>
           {fieldOnKeys.map(
             ([name, item]) => this.renderField({ name, ...item }),
@@ -99,7 +100,7 @@ class RegisterForm extends PureComponent<PRegisterForm, SRegisterForm> {
             Register
           </Button>
         </Form>
-      </div>
+      </RegisterFormStyled>
     )
   }
 }
