@@ -1,10 +1,10 @@
 import dotenv from 'dotenv'
-import Mongod from 'mongod'
 import express from 'express'
 import next from 'next'
 import config from 'config'
 import isProd from 'lib/utils/isProduction'
 import { REGEXP } from 'lib/enums'
+import bindGlobalFunctions from 'server/bindGlobalFunctions'
 import connectDatabase from 'server/connectDatabase'
 import applyMiddleware from 'server/applyMiddleware'
 import handleSecure from 'server/handleSecure'
@@ -13,6 +13,8 @@ import bindPublic from 'server/bindPublic'
 import registerApi from 'server/registerApi'
 import registerSocket from 'server/registerSocket'
 import bindRoutes from 'server/bindRoutes'
+
+bindGlobalFunctions()
 
 dotenv.config()
 

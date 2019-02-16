@@ -1,6 +1,5 @@
 import axios from 'axios'
 import _get from 'lodash/get'
-import ErrorLogger from 'lib/classes/error'
 import REQUEST from 'lib/enums/request'
 
 class Request {
@@ -9,7 +8,7 @@ class Request {
   constructor(name, ...rest) {
     const handle = _get(this, name)
     if (!handle) {
-      throw new ErrorLogger('request.notFoundHandler')
+      throw new LogError('request.notFoundHandler')
     }
 
     handle(...rest)

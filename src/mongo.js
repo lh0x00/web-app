@@ -1,5 +1,8 @@
 import dotenv from 'dotenv'
 import Mongod from 'mongod'
+import bindGlobalFunctions from 'server/bindGlobalFunctions'
+
+bindGlobalFunctions()
 
 dotenv.config()
 

@@ -1,4 +1,3 @@
-import ErrorLogger from 'lib/classes/error'
 import User from 'db/user'
 
 class UserController {
@@ -7,7 +6,7 @@ class UserController {
 
     const user = await User.create({ username, email, password })
     if (!user) {
-      throw new ErrorLogger('account.register.failed')
+      throw new LogError('account.register.failed')
     }
 
     return user
@@ -33,12 +32,12 @@ class UserController {
       },
     )
     if (!user) {
-      throw new ErrorLogger('account.login.notFound')
+      throw new LogError('account.login.notFound')
     }
 
     const isValid = user.authenticate(password)
     if (!isValid) {
-      throw new ErrorLogger('account.login.invalid')
+      throw new LogError('account.login.invalid')
     }
 
     if (user.password) {

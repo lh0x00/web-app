@@ -1,4 +1,3 @@
-import ErrorLogger from 'lib/classes/error'
 import Follow from 'db/follow'
 
 class FollowController {
@@ -7,12 +6,12 @@ class FollowController {
 
     const followExisted = await Follow.findOne({ follower, following })
     if (!followExisted) {
-      throw new ErrorLogger('follow.add.existed')
+      throw new LogError('follow.add.existed')
     }
 
     const followAdded = await Follow.create({ follower, following })
     if (!followAdded) {
-      throw new ErrorLogger('follow.add.insertFailed')
+      throw new LogError('follow.add.insertFailed')
     }
 
     return followAdded
@@ -23,12 +22,12 @@ class FollowController {
 
     const followExisted = await Follow.findOne({ follower, following })
     if (!followExisted) {
-      throw new ErrorLogger('follow.remove.notExisted')
+      throw new LogError('follow.remove.notExisted')
     }
 
     const followDeleted = await Follow.deleteOne({ follower, following })
     if (!followDeleted) {
-      throw new ErrorLogger('follow.remove.removeFailed')
+      throw new LogError('follow.remove.removeFailed')
     }
 
     return followDeleted

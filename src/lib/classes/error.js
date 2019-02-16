@@ -49,16 +49,20 @@ const errors = {
   },
 }
 
-class ErrorLogger extends Error {
+class Logger extends Error {
   constructor(path: string, ...rest) {
     super(...rest)
     const getError: void = _get(errors, path)
+    if (!getError) {
+      return new Error(path, ...rest)
+    }
+
     const { name, message } = getError(...rest)
-    const error = Error()
+    const error = new Error()
     error.name = name
     error.message = message
     return error
   }
 }
 
-export default ErrorLogger
+export default Logger
