@@ -1,5 +1,5 @@
 module.exports = function config(api) {
-  const isProd = process.env.MODE === 'production'
+  const isProd = process.env.mode === 'production'
 
   api.cache(isProd)
 

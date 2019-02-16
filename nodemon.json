@@ -4,7 +4,8 @@
     "node_modules",
     "dist",
     "*/__test__/*",
-    "*.test.js"
+    "*.test.js",
+    "data"
   ],
   "watch": [
     "src/mongo.js",

@@ -1,3 +1,3 @@
-const isProduction = process.env.MODE === 'production'
+const isProduction = process.env.mode === 'production'
 
 export default isProduction

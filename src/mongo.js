@@ -1,19 +1,30 @@
 import dotenv from 'dotenv'
-import Mongod from 'mongod'
+import { ReplSet } from 'mongodb-topology-manager'
+import config from 'config'
 import bindGlobalFunctions from 'server/bindGlobalFunctions'
 
 bindGlobalFunctions()
 
 dotenv.config()
 
-const port = parseInt(process.env.PORT, 10) || 27017
+const { db: dbConfig } = config || {}
+const { replicaSet, replSet: replSetList } = dbConfig || {}
 
-const server = new Mongod(port)
+const replSetConfig = replSetList.map(({ port, ip, path }) => ({
+  options: {
+    port,
+    bind_ip: ip,
+    dbpath: path,
+  },
+}))
 
-server.open().then((error) => {
-  if (error) {
-    throw error
-  }
+const server = new ReplSet('mongod', replSetConfig, { replSet: replicaSet })
+
+const init = async () => {
+  await server.purge()
+  await server.start()
   // eslint-disable-next-line no-console
   console.log('[mongo] database was started successfully')
-})
+}
+
+init()

@@ -1,5 +1,6 @@
 import config from 'config'
 import mongoose from 'mongoose'
+import parseMongoUrl from 'lib/utils/parseMongoUrl'
 
 mongoose.Promise = global.Promise
 
@@ -11,11 +12,13 @@ type TConnectDatabase = {
 const connectDatabase = async (
   {
     server, // eslint-disable-line no-unused-vars
-    db = config.db.url,
+    db,
   }: TConnectDatabase,
 ): boolean => {
+  const localDb = parseMongoUrl(config.db)
+
   const status = await mongoose
-    .connect(db, {
+    .connect(db || localDb, {
       useNewUrlParser: true,
       autoIndex: false,
     })
