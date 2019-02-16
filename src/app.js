@@ -1,4 +1,5 @@
 import dotenv from 'dotenv'
+import Mongod from 'mongod'
 import express from 'express'
 import next from 'next'
 import config from 'config'
@@ -46,8 +47,8 @@ app.prepare().then(() => {
     }
   })
 
-  server.listen(process.env.PORT || port, (err) => {
-    if (err) throw err
+  server.listen(port, (error) => {
+    if (error) throw error
     /* eslint-disable-next-line no-console */
     console.log(`> ready on: http://localhost:${port}`)
   })

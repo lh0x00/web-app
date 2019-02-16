@@ -20,11 +20,13 @@ const connectDatabase = async (
       autoIndex: false,
     })
     .then(() => {
-      console.log('[db] connection to database successfully') // eslint-disable-line no-console
+      // eslint-disable-next-line no-console
+      console.log('[db] connection to database successfully')
       return true
     })
     .catch(() => {
-      console.error('[db] connection occurred database error') // eslint-disable-line no-console
+      // eslint-disable-next-line no-console
+      console.error('[db] connection occurred database error')
       return false
     })
 
