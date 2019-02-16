@@ -1,4 +1,3 @@
-import config from 'config'
 import session from 'express-session'
 
 type TInitSession = {
@@ -8,8 +7,8 @@ type TInitSession = {
 function initSession({ server }: TInitSession): any {
   server.use(
     session({
-      name: config.session.name,
-      secret: config.session.secret,
+      name: WebApp.config.session.name,
+      secret: WebApp.config.session.secret,
       resave: true,
       unset: 'destroy',
       saveUninitialized: false,

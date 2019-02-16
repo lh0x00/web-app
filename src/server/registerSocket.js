@@ -1,9 +1,8 @@
 import http from 'http'
 import SocketIO from 'socket.io'
-import config from 'config'
 import authSocket from 'server/authSocket'
 
-const { socket: socketConfig } = config
+const { socket: socketConfig } = WebApp.config
 
 type TRegisterSocket = {
   server: any,

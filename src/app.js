@@ -1,7 +1,6 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import next from 'next'
-import config from 'config'
 import isProd from 'lib/utils/isProduction'
 import { REGEXP } from 'lib/enums'
 import bindGlobalFunctions from 'server/bindGlobalFunctions'
@@ -18,7 +17,7 @@ bindGlobalFunctions()
 
 dotenv.config()
 
-const port = parseInt(process.env.PORT, 10) || config.server.port
+const port = parseInt(process.env.PORT, 10) || WebApp.config.server.port
 
 const app = next({ dev: !isProd, dir: !isProd ? './src' : './dist' })
 const handle = app.getRequestHandler()

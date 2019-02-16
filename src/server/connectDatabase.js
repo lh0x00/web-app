@@ -1,4 +1,3 @@
-import config from 'config'
 import mongoose from 'mongoose'
 import parseMongoUrl from 'lib/utils/parseMongoUrl'
 
@@ -15,7 +14,7 @@ const connectDatabase = async (
     db,
   }: TConnectDatabase,
 ): boolean => {
-  const localDb = parseMongoUrl(config.db)
+  const localDb = parseMongoUrl(WebApp.config.db)
 
   const status = await mongoose
     .connect(db || localDb, {

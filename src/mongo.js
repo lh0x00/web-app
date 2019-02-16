@@ -1,13 +1,12 @@
 import dotenv from 'dotenv'
 import { ReplSet } from 'mongodb-topology-manager'
-import config from 'config'
 import bindGlobalFunctions from 'server/bindGlobalFunctions'
 
 bindGlobalFunctions()
 
 dotenv.config()
 
-const { db: dbConfig } = config || {}
+const { db: dbConfig } = WebApp.config || {}
 const { replicaSet, replSet: replSetList } = dbConfig || {}
 
 const replSetConfig = replSetList.map(({ port, ip, path }) => ({
