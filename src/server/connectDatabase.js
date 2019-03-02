@@ -20,6 +20,8 @@ const connectDatabase = async (
     .connect(db || localDb, {
       useNewUrlParser: true,
       autoIndex: false,
+      reconnectTries: Number.MAX_VALUE,
+      reconnectInterval: 1000,
     })
     .then(() => {
       // eslint-disable-next-line no-console
