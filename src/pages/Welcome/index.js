@@ -3,9 +3,9 @@ import compose from 'lib/hoc/compose'
 import withSession from 'lib/hoc/withSession'
 import withRouter from 'lib/hoc/withRouter'
 
-type TWelcome = {} & Page
+type PWelcome = {} & Page
 
-class Welcome extends PureComponent<TWelcome, StateComponent> {
+class Welcome extends PureComponent<PWelcome, StateComponent> {
   render() {
     const { session } = this.props
     const { isLogged } = session || {}
