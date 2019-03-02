@@ -1,4 +1,6 @@
+const path = require('path')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const withCustomBabelConfigFile = require('next-plugin-custom-babel-config')
 
 const bundleAnalyzer = new BundleAnalyzerPlugin({
   analyzerMode: 'disabled',
@@ -8,7 +10,7 @@ const bundleAnalyzer = new BundleAnalyzerPlugin({
   statsFilename: 'stats.json',
 })
 
-module.exports = {
+module.exports = withCustomBabelConfigFile({
   dir: 'src/pages',
   distDir: 'dist',
   pageExtensions: ['jsx', 'js'],
@@ -19,4 +21,5 @@ module.exports = {
     // important: return the modified config
     return config
   },
-}
+  babelConfigFile: path.resolve('babel.config.js'),
+})
